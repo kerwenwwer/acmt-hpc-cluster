@@ -1,0 +1,14 @@
+# tasks file for ldap-client
+- name: Install Environment Modules
+  apt:
+    name: environment-modules
+    state: present
+    update_cache: yes
+
+- name: Copy modules.sh to /etc/profile.d/
+  ansible.builtin.copy:
+    src: files/modules.sh
+    dest: /etc/profile.d/modules.sh
+    owner: root
+    group: root
+    mode: '0644'

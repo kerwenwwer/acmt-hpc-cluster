@@ -1,0 +1,11 @@
+# tasks file for ldap-client
+- name: Install RDMA Core
+  apt:
+    name: 
+      - rdma-core
+
+- name: Install OpenSM
+  apt:
+    name: opensm
+  when: head
+

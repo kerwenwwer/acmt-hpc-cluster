@@ -1,0 +1,23 @@
+# tasks file for ldap-client
+- name: Install ldap-clinet 
+  apt:
+    name:
+      - libnss-ldapd
+      - libpam-ldap 
+      - ldap-utils
+      - nslcd
+
+- name: Copy LDAP Configuration Files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ ldap_files }}"
+
+- name: Restart nslcd service
+  systemd:
+    name: nslcd
+    state: restarted
+    enabled: yes  # Ensure the service is enabled to start on boot

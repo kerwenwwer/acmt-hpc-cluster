@@ -1,0 +1,11 @@
+- hosts: acmt
+  roles:
+    # - base-package
+    # - env-modules
+    # - nfs
+    # -  update_hosts
+    - slurm
+    # - role: ldap-client
+    #   when: not head
+    # - role: docker
+    #   when: not storage

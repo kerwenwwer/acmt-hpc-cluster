@@ -1,0 +1,10 @@
+---
+# vars file for ldap-client
+ldap_server_url: "ldap://192.168.1.10"
+ldap_base_dn: "dc=acmt"
+ldap_files:
+  - { src: 'files/nslcd.conf', dest: '/etc/nslcd.conf', owner: 'root', group: 'nslcd', mode: '0640' }
+  - { src: 'files/nsswitch.conf', dest: '/etc/nsswitch.conf', owner: 'root', group: 'root', mode: '0644' }
+  - { src: 'files/common-password', dest: '/etc/pam.d/common-password', owner: 'root', group: 'root', mode: '0644' }
+  - { src: 'files/ldap.conf', dest: '/etc/ldap.conf', owner: 'root', group: 'root', mode: '0644' }
+  - { src: 'files/ldap.secret', dest: '/etc/ldap.secret', owner: 'root', group: 'root', mode: '0644' }

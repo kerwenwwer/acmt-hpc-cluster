@@ -1,0 +1,50 @@
+# tasks file for ldap-client
+- name: Install NFS
+  apt:
+    name: 
+      - nfs-kernel-server
+      - nfs-common
+
+- name: Ensure NFS exports for /home and /opt
+  blockinfile:
+    path: /etc/exports
+    block: |
+      /home {{ nfs_network }}(rw,no_root_squash,async)
+      /opt {{ nfs_network }}(rw,no_root_squash,async)
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR NFS EXPORTS"
+    mode: 0644
+  when: storage
+
+- name: (Re)start and enable nfs-server
+  systemd:
+    name: nfs-server
+    state: '{{ "restarted" if exports.changed else "started" }}'
+    enabled: yes
+  when: storage
+
+- name: Configure home nfs mount
+  template:
+    src: home.mount
+    dest: "/etc/systemd/system/home.mount"
+    mode: 0644
+  register: mount
+  when: not storage
+
+- name: Configure opt nfs mount
+  template:
+    src: opt.mount
+    dest: /etc/systemd/system/opt.mount
+    mode: 0644
+  register: mount
+  when: not head
+
+- name: (Re)start and enable all mount
+  systemd:
+    name: "{{item}}.mount"
+    daemon_reload: '{{ mount.changed }}'
+    state: '{{ "restarted" if mount.changed else "started" }}'
+    enabled: yes
+  when: not head
+  loop:
+    - home
+    - opt

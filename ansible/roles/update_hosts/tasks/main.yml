@@ -1,0 +1,8 @@
+# update_hosts/tasks/main.yml
+---
+- name: Update /etc/hosts file
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ item.ip }} {{ item.host }}"
+    state: present
+  loop: "{{ ip_host_mappings }}"

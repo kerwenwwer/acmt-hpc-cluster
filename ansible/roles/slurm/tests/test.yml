@@ -1,0 +1,5 @@
+---
+- hosts: 10.121.187.102
+  remote_user: root
+  roles:
+    - ldap-client

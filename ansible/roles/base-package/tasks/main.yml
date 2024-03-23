@@ -1,0 +1,29 @@
+---
+# tasks file for base-package
+- name: Install base packages
+  apt: 
+    name:
+      - build-essential
+      - clang
+      - git
+      - rdma-core
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+      - dkms
+
+- name: Install mysql
+  apt:
+    name: mysql-server
+    state: present
+  when: head
+
+- name: Install PyMySQL
+  pip:
+    name: pymysql
+    state: present
+  when: head

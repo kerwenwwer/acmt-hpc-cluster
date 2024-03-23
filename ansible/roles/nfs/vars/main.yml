@@ -1,0 +1,5 @@
+---
+# vars file for ldap-client
+nfs_network: 192.168.1.0/24
+nfs_home_server: 192.168.1.11
+nfs_opt_server: 192.168.1.11

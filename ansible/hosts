@@ -1,0 +1,9 @@
+[acmt]
+192.168.1.10 head=True storage=False slurmd=True
+192.168.1.11 head=False storage=True ldap-client=False gpu=False  slurmd=False
+192.168.1.[19:26] head=False storage=False ldap-client=True gpu=False slurmd=True
+
+[acmt:vars]
+cluster_name=acmt
+ansible_python_interpreter=/usr/bin/python3
+nfs_network=192.168.1.0/24

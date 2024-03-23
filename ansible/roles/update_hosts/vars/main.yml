@@ -1,0 +1,19 @@
+# update_hosts/vars/main.yml
+ip_host_mappings:
+  - { ip: "192.168.1.10", host: "acmt0" }
+  - { ip: "192.168.1.11", host: "acmt-storage" }
+  - { ip: "192.168.1.12", host: "acmt01" }
+  - { ip: "192.168.1.13", host: "acmt02" }
+  - { ip: "192.168.1.14", host: "acmt03" }
+  - { ip: "192.168.1.15", host: "acmt04" }
+  - { ip: "192.168.1.16", host: "acmt05" }
+  - { ip: "192.168.1.17", host: "acmt06" }
+  - { ip: "192.168.1.18", host: "acmt07" }
+  - { ip: "192.168.1.19", host: "acmt08" }
+  - { ip: "192.168.1.20", host: "acmt09" }
+  - { ip: "192.168.1.21", host: "acmt10" }
+  - { ip: "192.168.1.22", host: "acmt11" }
+  - { ip: "192.168.1.23", host: "acmt12" }
+  - { ip: "192.168.1.24", host: "acmt13" }
+  - { ip: "192.168.1.25", host: "acmt14" }
+  - { ip: "192.168.1.26", host: "acmt15" }

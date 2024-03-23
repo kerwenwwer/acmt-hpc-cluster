@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount /opt
+
+[Mount]
+What={{ nfs_opt_server }}:/opt
+Where=/opt
+Options=proto=rdma,nofail,soft
+Type=nfs
+TimeoutSec=30
+ForceUnmount=yes
+ReadWriteOnly=yes
+
+[Install]
+WantedBy=multi-user.target

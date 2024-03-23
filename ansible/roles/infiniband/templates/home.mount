@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount home
+
+[Mount]
+What={{ nfs_home_server }}:/home
+Where=/home
+Options=proto=rdma,nofail,soft
+Type=nfs
+TimeoutSec=30
+ForceUnmount=yes
+ReadWriteOnly=yes
+
+[Install]
+WantedBy=multi-user.target

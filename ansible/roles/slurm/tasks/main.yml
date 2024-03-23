@@ -1,0 +1,77 @@
+# manages: munge
+# manages: slurm
+- name: Install slurm & munge
+  apt:
+    name: 
+      - slurm
+      - slurmd
+
+- name: Install slurmdbd
+  apt:
+    name:
+      - slurmctld
+      - slurmdbd
+  when: head
+
+- name: Create munge key
+  command: mungekey --create
+  args:
+    creates: /etc/munge/munge.key
+  when: head
+
+- name: Copy munge key
+  copy:
+    src: /etc/munge/munge.key
+    dest: /etc/munge/munge.key
+    mode: 0400
+    owner: munge
+    group: munge
+
+- name: Restart and enable munge
+  systemd:
+    name: munge
+    state: restarted
+    enabled: yes
+
+- name: Create database uesr slurm
+  community.mysql.mysql_user:
+    name: slurm
+    host: localhost
+    priv: 'slurm_acct_db.*:ALL'
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  when: head
+
+- name: Config slurm
+  copy:
+    src: "{{ cluster_name }}/"
+    dest: /etc/slurm/
+    directory_mode: 0755
+    mode: 0644
+
+- name: Set permissions for /etc/slurm/slurmdbd
+  file:
+    path: /etc/slurm/slurmdbd.conf
+    mode: 0600
+  when: head
+
+- name: Restart and enable slurmctld
+  systemd:
+    name: slurmctld
+    state: restarted
+    enabled: yes
+  when: head
+
+- name: Restart and enable slurmdbd
+  systemd:
+    name: slurmdbd
+    state: restarted
+    enabled: yes
+  when: head
+
+- name: Restart and enable slurmd
+  systemd:
+    name: slurmd
+    state: restarted
+    enabled: yes
+  when: slurmd
