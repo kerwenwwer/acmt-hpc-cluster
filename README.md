@@ -1,8 +1,10 @@
+# AC&T HPC Cluster
+
 # ansible playbooks
 
 ## Set up
 
-*   Install ansible: `pacman -S ansible`
+*   Install ansible: `apt install ansible`
 
     *   To run the `mariadb` role, a plugin is required: `ansible-galaxy collection install community.mysql`
 

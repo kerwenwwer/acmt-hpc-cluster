@@ -4,8 +4,8 @@
     # - env-modules
     # - nfs
     # -  update_hosts
-    - slurm
+    # - slurm
     # - role: ldap-client
     #   when: not head
-    # - role: docker
-    #   when: not storage
+    - role: docker
+      when: not storage
