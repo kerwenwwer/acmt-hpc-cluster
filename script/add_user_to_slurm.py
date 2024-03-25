@@ -2,7 +2,7 @@ import subprocess
 
 def add_user_to_slurm_account(username, account='lab'):
 
-    # USer sacctmgr to add user to an exist slurm account.
+    # Use sacctmgr to add user to an exist slurm account.
     command = f"sacctmgr add user {username} Account={account} --immediate"
 
     try:
