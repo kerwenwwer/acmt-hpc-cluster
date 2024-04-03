@@ -15,6 +15,8 @@
       - virtualenv
       - python3-setuptools
       - dkms
+      - mesa-utils
+
 
 - name: Install mysql
   apt:
@@ -27,3 +29,29 @@
     name: pymysql
     state: present
   when: head
+
+
+- name: Install Ansys dep.
+  apt:
+    name: 
+      - alien
+      - freeglut3
+      - libxcb-xinerama0
+      - lsb
+
+
+- name: Download libldap package
+  ansible.builtin.get_url:
+    url: http://http.us.debian.org/debian/pool/main/o/openldap/libldap-2.4-2_2.4.47+dfsg-3+deb10u7_amd64.deb
+    dest: /tmp/libldap-2.4-2_2.4.47+dfsg-3+deb10u7_amd64.deb
+  become: yes
+
+- name: Install libldap package
+  ansible.builtin.apt:
+    deb: /tmp/libldap-2.4-2_2.4.47+dfsg-3+deb10u7_amd64.deb
+  become: yes
+
+- name: Reconfigure dash
+  ansible.builtin.command:
+    cmd: dpkg-reconfigure -p critical dash
+  become: yes
