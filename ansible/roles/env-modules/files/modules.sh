@@ -6,4 +6,4 @@ else
    . /usr/share/modules/init/sh
 fi
 
-export MODULEPATH=$MODULEPATH:/opt/intel/oneapi/modulefiles:/opt/modulefiles:/opt/intel/modulefiles:/opt/cuda/modulefiles:/opt/nvidia/hpc_sdk/modulefiles
+export MODULEPATH=$MODULEPATH:/opt/intel/oneapi/modulefiles:/opt/modulefiles:/opt/intel/modulefiles:/opt/cuda/modulefiles:/opt/nvidia/hpc_sdk/modulefiles:/opt/applications
