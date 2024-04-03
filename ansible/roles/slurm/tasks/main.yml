@@ -72,6 +72,6 @@
 - name: Restart and enable slurmd
   systemd:
     name: slurmd
-    state: restarted
+    state: restartedssh 
     enabled: yes
   when: slurmd
